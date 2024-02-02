@@ -102,32 +102,27 @@ fun AltZagrebListItemLocationCard(
    val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(altInstitution.geoLocation, 15f)
     }
-    Box(modifier= modifier
-        .background(color = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f))
-    ){
-        Card(
+    Card(
             modifier = modifier
                 .fillMaxWidth()
                 .padding(dimensionResource(id = R.dimen.padding_medium))
                 .height(240.dp)
-        ){
-            val context = LocalContext.current
-            GoogleMap(
-                modifier = Modifier
-                    .fillMaxSize(),
-                cameraPositionState = cameraPositionState,
-                properties = MapProperties (
-                    mapStyleOptions = MapStyleOptions(context.getString(R.string.style_json)))
-            ) {
-                Marker(
-                    state = MarkerState(position = altInstitution.geoLocation),
-                    title = stringResource(altInstitution.name),
-                    snippet = stringResource(altInstitution.name)
-                )
-            }
+    ){
+        val context = LocalContext.current
+        GoogleMap(
+            modifier = Modifier
+                .fillMaxSize(),
+            cameraPositionState = cameraPositionState,
+            properties = MapProperties (
+                mapStyleOptions = MapStyleOptions(context.getString(R.string.style_json)))
+        ) {
+            Marker(
+                state = MarkerState(position = altInstitution.geoLocation),
+                title = stringResource(altInstitution.name),
+                snippet = stringResource(altInstitution.name)
+            )
         }
     }
-
 }
 
 
